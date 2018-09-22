@@ -14,7 +14,7 @@ public class OperacoesLista {
 
 		try {
 			BufferedReader in = new BufferedReader(
-					new InputStreamReader(new FileInputStream(CAMINHO_ARQUIVO), "UTF-8"));
+					new InputStreamReader(new FileInputStream(CAMINHO_ARQUIVO), "ISO-8859-1"));
 			String linha = in.readLine();
 			while (linha != null) {
 				String atributos[] = linha.split(";");
