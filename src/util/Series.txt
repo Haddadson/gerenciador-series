@@ -40,7 +40,7 @@ Scorpion;Série;51-92 minutos;Estados Unidos;inglês;CBS;22 de setembro de 2014 - 
 Sense8;Websérie;45-66 minutos;Estados Unidos;Inglês;Netflix;5 de junho de 2015 - atualmente;2;23
 Sherlock;Série;85-90 minutos;Reino Unido;Inglês;BBC One;25 de julho de 2010 - presente;4;13
 Smallville;Série;51-92 minutos;Estados Unidos;Inglês;The WB; 16 de Outubro de 2001 - 13 de maio de 2011;10;217
-Sons of Anarchy;Série 50 min.;Estados Unidos;Inglês;FX;3 de Setembro de 2008 - 9 de Dezembro de 2014;7;92
+Sons of Anarchy;Série;50 min.;Estados Unidos;Inglês;FX;3 de Setembro de 2008 - 9 de Dezembro de 2014;7;92
 Stranger Things;Série;42-55 minutos;Estados Unidos;Inglês;Netflix;15 de julho de 2016 - presente;1;8
 Suits;Série;90 minutos;Estados Unidos;Inglês;USA Network;23 de junho de 2011 - presente;6;92
 Supernatural;Série;38-45 minutos;Estados Unidos;Inglês;The WB;13 de setembro de 2005 - presente;12;264

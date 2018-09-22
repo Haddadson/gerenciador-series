@@ -7,10 +7,16 @@ import model.Serie;
 public class OperacoesLista {
 	private static final String CAMINHO_ARQUIVO = "src/util/Series.txt";
 	private static int contadorSeries = 0;
+	private Lista lista;
+	private Lista listaFavoritos;
 
-	public OperacoesLista() {}
+	public OperacoesLista() {
+		this.lista = new Lista();
+		this.listaFavoritos = new Lista();
+		this.lista = lerArquivo();
+	}
 
-	public static Lista lerArquivo(Lista lista) {
+	public Lista lerArquivo() {
 
 		try {
 			BufferedReader in = new BufferedReader(
@@ -18,7 +24,7 @@ public class OperacoesLista {
 			String linha = in.readLine();
 			while (linha != null) {
 				String atributos[] = linha.split(";");
-				lista.inserirFim(preencherSerie(atributos));
+				this.lista.inserirFim(preencherSerie(atributos));
 				linha = in.readLine();
 			}
 			in.close();
@@ -30,7 +36,7 @@ public class OperacoesLista {
 		return lista;
 	}
 
-	public static Serie preencherSerie(String atributos[]) {
+	public Serie preencherSerie(String atributos[]) {
 		Serie serie = new Serie();
 		if (atributos.length == 9) {
 			serie.setId(++contadorSeries);
@@ -46,6 +52,10 @@ public class OperacoesLista {
 		}
 
 		return serie;
+	}
+	
+	public Serie buscarSerie(String nome) {
+		return lista.pesquisarPorNomeSerie(nome);
 	}
 
 }
