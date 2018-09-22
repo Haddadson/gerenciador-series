@@ -1,10 +1,13 @@
+package model;
 
 public class Serie {
+	private int id;
 	private String nome, tipo, duracao, pais, idioma, emissora;
 	private String transmissao, numTemporadas, numEpisodios;
 
-	public Serie(String nome, String tipo, String duracao, String pais, String idioma, String emissora,
+	public Serie(int id, String nome, String tipo, String duracao, String pais, String idioma, String emissora,
 			String transmissao, String numTemporadas, String numEpisodios) {
+		this.id = id;
 		this.nome = nome;
 		this.tipo = tipo;
 		this.duracao = duracao;
@@ -17,6 +20,14 @@ public class Serie {
 	}
 	
 	public Serie(){
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getNome() {
@@ -90,6 +101,15 @@ public class Serie {
 	public void setNumEpisodios(String numEpisodios) {
 		this.numEpisodios = numEpisodios;
 	}
+
+	@Override
+	public String toString() {
+		return "Série [nome=" + nome + ", tipo=" + tipo + ", duracao=" + duracao + ", pais=" + pais + ", idioma="
+				+ idioma + ", emissora=" + emissora + ", transmissao=" + transmissao + ", numTemporadas="
+				+ numTemporadas + ", numEpisodios=" + numEpisodios + "]";
+	}
+	
+	
 	
 	
 	
