@@ -5,7 +5,8 @@ public class Lista {
 	private int qtdItens;
 
 	public Lista() {
-		this.ultimo = this.primeiro = null;
+		primeiro = new Celula();
+		ultimo = primeiro;
 		this.qtdItens = 0;
 	}
 
@@ -16,31 +17,28 @@ public class Lista {
 
 	public void inserirInicio(Serie x) {
 		Celula tmp = new Celula(x);
+
+		tmp.ant = primeiro;
 		tmp.prox = primeiro.prox;
 		primeiro.prox = tmp;
 		if (primeiro == ultimo) {
 			ultimo = tmp;
+		} else {
+			tmp.prox.ant = tmp;
 		}
 		tmp = null;
-		qtdItens++;
+		this.qtdItens++;
 	}
 
 	public void inserirFim(Serie x) {
-		Celula aux = new Celula(x);
-
-		if (isEmpty()) {
-			this.primeiro = this.ultimo = aux;
-		} else {
-			aux.setAnt(this.ultimo);
-			this.ultimo.setProx(aux);
-
-			this.ultimo = aux;
-		}
-
+		ultimo.prox = new Celula(x);
+		ultimo.prox.ant = ultimo;
+		ultimo = ultimo.prox;
 		this.qtdItens++;
 	}
 
 	public void inserir(Serie x, int pos) throws Exception {
+
 		if (pos < 0 || pos > qtdItens) {
 			throw new Exception("Erro!");
 		} else if (pos == 0) {
@@ -52,112 +50,109 @@ public class Lista {
 			for (int j = 0; j < pos; j++, i = i.prox)
 				;
 			Celula tmp = new Celula(x);
+			tmp.ant = i;
 			tmp.prox = i.prox;
-			i.prox = tmp;
+			tmp.ant.prox = tmp.prox.ant = tmp;
 			tmp = i = null;
 		}
-		qtdItens++;
+
+		this.qtdItens++;
+
 	}
 
 	public Serie removerInicio() throws Exception {
-		if (isEmpty())
-			throw new Exception("A lista está vazia !");
-
-		Celula aux = this.primeiro;
-		this.primeiro = this.primeiro.prox;
-
-		aux.ant = null;
-		aux.prox = null;
-
-		if (this.primeiro == null) {
-			this.primeiro = this.ultimo = null;
-		} else
-			this.primeiro.ant = null;
-
+		if (primeiro == ultimo)
+			throw new Exception("Erro!");
+		Celula tmp = primeiro;
+		primeiro = primeiro.prox;
+		Serie elemento = primeiro.getElemento();
+		tmp.prox = primeiro.ant = null;
+		tmp = null;
 		this.qtdItens--;
 
-		return aux.getElemento();
+		return elemento;
 	}
 
 	public Serie removerFim() throws Exception {
 		if (primeiro == ultimo)
 			throw new Exception("Erro!");
-		Celula i;
-		for (i = primeiro; i.prox != ultimo; i = i.prox)
-			;
 		Serie elemento = ultimo.getElemento();
-		ultimo = i;
-		i = ultimo.prox = null;
-		qtdItens--;
+		ultimo = ultimo.ant;
+		ultimo.prox.ant = null;
+		ultimo.prox = null;
+		this.qtdItens--;
 		return elemento;
 	}
 
 	public Serie remover(int pos) throws Exception {
 		Serie elemento;
-		if (primeiro == ultimo || pos < 0 || pos >= qtdItens) {
+		if (primeiro == ultimo) {
+			throw new Exception("Erro!");
+		} else if (pos < 0 || pos >= qtdItens) {
 			throw new Exception("Erro!");
 		} else if (pos == 0) {
 			elemento = removerInicio();
 		} else if (pos == qtdItens - 1) {
 			elemento = removerFim();
 		} else {
-			Celula i = primeiro;
-			for (int j = 0; j < pos; j++, i = i.prox)
+			Celula i = primeiro.prox;
+			for (int j = 0; j <= pos; j++, i = i.prox)
 				;
-			Celula tmp = i.prox;
-			elemento = tmp.getElemento();
-			i.prox = tmp.prox;
-			tmp.prox = null;
-			i = tmp = null;
+			i.ant.prox = i.prox;
+			i.prox.ant = i.ant;
+			elemento = i.getElemento();
+			i.prox = i.ant = null;
+			i = null;
 		}
-		qtdItens--;
 		return elemento;
 	}
 
 	public Serie pesquisarPorPosicao(int pos) throws Exception {
 		Celula aux;
-		
-		if(!posicaoExiste(pos)) {
+
+		if (!posicaoExiste(pos)) {
 			throw new Exception("A posição informada não existe !");
 		}
-	
+
 		aux = primeiro;
-		for(int i = pos; i > 0; i--) {
+		for (int i = pos; i > 0; i--) {
 			aux = aux.prox;
 		}
 		return aux.getElemento();
 	}
-	
+
 	public Serie pesquisarPorNomeSerie(String nome) {
 		Celula aux = primeiro;
-		
-		while(aux != null && (!nome.equalsIgnoreCase(aux.getElemento().getNome()))) {
+
+		while (aux != null && (!nome.equalsIgnoreCase(aux.getElemento().getNome()))) {
 			aux = aux.prox;
 		}
-		
-		if(aux != null) {
+
+		if (aux != null) {
 			return aux.getElemento();
-		}		
-		return null; 
+		}
+		return null;
 	}
-	
+
 	public Serie pesquisarPorIdSerie(int id) {
 		Celula aux = primeiro;
-		
-		while(aux != null && (id != aux.getElemento().getId())) {
+
+		while (aux != null && (id != aux.getElemento().getId())) {
 			aux = aux.prox;
 		}
-		
-		if(aux != null) {
+
+		if (aux != null) {
 			return aux.getElemento();
-		}		
-		return null; 
+		}
+		return null;
 	}
 
 	public void mostrar() {
 		Celula i = primeiro;
 		while (i != null) {
-			System.out.println(i.getElemento().toString());
+			if (i.getElemento() != null) {
+				System.out.println(i.getElemento().toString());
+			}
 			i = i.prox;
 		}
 	}
@@ -167,7 +162,7 @@ public class Lista {
 			return true;
 		return false;
 	}
-	
+
 	private boolean posicaoExiste(int posicao) {
 		return posicao >= 0 && posicao < qtdItens;
 	}
