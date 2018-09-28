@@ -157,6 +157,17 @@ public class Lista {
 		}
 	}
 
+	public String preencherString() {
+		Celula i = primeiro;
+		String stringPreenchido = "";
+		while (i != null) {
+			if (i.getElemento() != null) {
+				stringPreenchido += i.getElemento().toString() + "\n";
+			}
+			i = i.prox;
+		}
+		return stringPreenchido;
+	}
 	public boolean isEmpty() {
 		if (primeiro == ultimo)
 			return true;

@@ -1,6 +1,4 @@
-/util/
-/model/
-/business/
-/App/
 /application/
+/business/
 /view/
+/model/

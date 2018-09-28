@@ -15,6 +15,10 @@ public class OperacoesLista {
 		this.listaFavoritos = new Lista();
 		this.lista = lerArquivo();
 	}
+	
+	public Lista getLista(){
+		return lista;
+	}
 
 	public Lista lerArquivo() {
 
@@ -50,12 +54,15 @@ public class OperacoesLista {
 			serie.setNumTemporadas(atributos[7]);
 			serie.setNumEpisodios(atributos[8]);
 		}
-
 		return serie;
 	}
 	
 	public Serie buscarSerie(String nome) {
 		return lista.pesquisarPorNomeSerie(nome);
+	}
+	
+	public String buscarTodasSeries(){
+		return lista.preencherString();
 	}
 
 }
