@@ -109,6 +109,22 @@ public class Serie {
 				+ numTemporadas + ", numEpisodios=" + numEpisodios + "]";
 	}
 	
+	public Object[] toObject() {
+		Object[] obj = new Object[10];
+
+		obj[0] = this.id;
+		obj[1] = this.nome;
+		obj[2] = this.tipo;
+		obj[3] = this.pais;
+		obj[4] = this.idioma;
+		obj[5] = this.emissora;
+		obj[6] = this.transmissao;
+		obj[7] = this.duracao;
+		obj[8] = this.numTemporadas;
+		obj[9] = this.numEpisodios;
+		
+		return obj;
+	}
 	
 	
 	

@@ -7,7 +7,7 @@ import javax.swing.UIManager.LookAndFeelInfo;
 import business.OperacoesLista;
 
 public class VisaoInicial {
-	OperacoesLista op;
+	public OperacoesLista op;
 	
 	public VisaoInicial(){
 		setLookAndFeel();
@@ -30,15 +30,15 @@ public class VisaoInicial {
 		}
 	}
 	
-	public void menuInicial(){
+	public int menuInicial(){
 		int operacao = 0;
-		JOptionPane.showInputDialog(null, "1-Visualizar séries\n2-Buscar série"
+		operacao = Integer.parseInt(JOptionPane.showInputDialog(null, "1-Visualizar séries\n2-Buscar série"
 										+"\n3-Favoritar série\n5-Remover favorito"
 										+"\n5-Listar favoritos\n6-Sair"
-										+"\nEscolha uma opção:", "Gerenciador de Séries",JOptionPane.INFORMATION_MESSAGE);
+										+"\nEscolha uma opção:", "Gerenciador de Séries",JOptionPane.INFORMATION_MESSAGE));
 		switch(operacao){
 			case 1:
-				op.buscarTodasSeries();
+				JanelaTexto.imprimirComScroll(op.buscarTodasSeries());
 				break;
 			case 2:
 				break;
@@ -51,5 +51,6 @@ public class VisaoInicial {
 			case 6:
 				break;
 		}
+		return operacao;
 	}
 }

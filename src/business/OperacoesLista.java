@@ -7,8 +7,8 @@ import model.Serie;
 public class OperacoesLista {
 	private static final String CAMINHO_ARQUIVO = "src/util/Series.txt";
 	private static int contadorSeries = 0;
-	private Lista lista;
-	private Lista listaFavoritos;
+	private static Lista lista;
+	private static Lista listaFavoritos;
 
 	public OperacoesLista() {
 		this.lista = new Lista();
