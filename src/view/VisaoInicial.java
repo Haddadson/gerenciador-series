@@ -5,6 +5,8 @@ import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 
 import business.OperacoesLista;
+import model.Serie;
+import util.MetodosUteis;
 
 public class VisaoInicial {
 	public OperacoesLista op;
@@ -40,7 +42,16 @@ public class VisaoInicial {
 			case 1:
 				JanelaTexto.imprimirComScroll(op.buscarTodasSeries());
 				break;
-			case 2:
+			case 2: 
+				Serie serieObtida;
+				String valorPesquisa = JOptionPane.showInputDialog(null, "Digite o id ou o nome da série a ser buscada:", 
+																	"Busca de séries", JOptionPane.QUESTION_MESSAGE);
+				//if(MetodosUteis.tryParseInt(valorPesquisa)) {
+					serieObtida = op.buscarSeriePorId(Integer.parseInt(valorPesquisa));
+				/*} else {
+					serieObtida = op.buscarSeriePorNome(valorPesquisa);
+				}*/
+				JanelaTexto.imprimirComScroll(serieObtida.toString());
 				break;
 			case 3:
 				break;

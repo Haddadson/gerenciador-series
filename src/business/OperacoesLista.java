@@ -57,7 +57,11 @@ public class OperacoesLista {
 		return serie;
 	}
 	
-	public Serie buscarSerie(String nome) {
+	public Serie buscarSeriePorId(int id) {
+		return lista.pesquisarPorIdSerie(id);
+	}
+	
+	public Serie buscarSeriePorNome(String nome) {
 		return lista.pesquisarPorNomeSerie(nome);
 	}
 	

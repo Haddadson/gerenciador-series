@@ -135,7 +135,7 @@ public class Lista {
 	}
 
 	public Serie pesquisarPorIdSerie(int id) {
-		Celula aux = primeiro;
+		Celula aux = primeiro.prox;
 
 		while (aux != null && (id != aux.getElemento().getId())) {
 			aux = aux.prox;
