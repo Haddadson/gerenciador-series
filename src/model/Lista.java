@@ -182,36 +182,4 @@ public class Lista {
 		return qtdItens;
 	}
 	
-	public Object[][] getSeriesEmTipoObjeto() {	
-		
-		Object[][] data = new Object[this.qtdItens][11];
-		
-		Celula aux = this.primeiro;
-		Object[] helper;
-		
-		int i = 0;
-		while(aux != null) {
-			if(aux.getElemento()!= null) {
-				helper = aux.getElemento().toObject();
-				
-				data[i][0] = helper[0];
-				data[i][1] = helper[1];
-				data[i][2] = helper[2];
-				data[i][3] = helper[3];
-				data[i][4] = helper[4];
-				data[i][5] = helper[5];
-				data[i][6] = helper[6];
-				data[i][7] = helper[7];
-				data[i][8] = helper[8];
-				data[i][9] = helper[9];
-				data[i][10] = Boolean.FALSE;
-				
-				aux = aux.getProx();
-				i++;	
-			}
-			
-		}
-		
-		return data;
-	}
 }
