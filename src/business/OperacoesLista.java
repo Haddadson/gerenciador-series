@@ -57,6 +57,10 @@ public class OperacoesLista {
 		return serie;
 	}
 	
+	public void favoritarSerie (Serie serie) {
+		listaFavoritos.inserirFim(serie);
+	}
+	
 	public Serie buscarSeriePorId(int id) {
 		return lista.pesquisarPorIdSerie(id);
 	}
