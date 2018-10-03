@@ -58,7 +58,7 @@ public class VisaoInicial {
 										   + serieObtida.toString(), 10, 60);
 			break;
 		case 4:
-
+			
 			break;
 		case 5:
 			break;
