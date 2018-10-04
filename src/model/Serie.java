@@ -104,34 +104,12 @@ public class Serie {
 
 	@Override
 	public String toString() {
-		return "Série [id = "+ id + ", nome=" + nome + ", tipo=" + tipo + ", duracao=" + duracao + ", pais=" + pais + ", idioma="
-				+ idioma + ", emissora=" + emissora + ", transmissao=" + transmissao + ", numTemporadas="
-				+ numTemporadas + ", numEpisodios=" + numEpisodios + "]";
+		return "Série [ ID = "+ id + ", nome = " + nome + ", tipo = " + tipo + ", duração = " + duracao + ", país = " + pais + ", idioma = "
+				+ idioma + ", emissora = " + emissora + ", transmissao = " + transmissao + ", número de temporadas = "
+				+ numTemporadas + ", número de episódios = " + numEpisodios + " ]\n";
 	}
 	
 	public String formatarParaArquivo() {
 		return id+";"+nome+";"+tipo+";"+duracao+";"+pais+";"+idioma+";"+emissora+";"+transmissao+";"+numTemporadas+";"+numEpisodios + System.lineSeparator();
 	}
-	
-	public Object[] toObject() {
-		Object[] obj = new Object[10];
-
-		obj[0] = this.id;
-		obj[1] = this.nome;
-		obj[2] = this.tipo;
-		obj[3] = this.pais;
-		obj[4] = this.idioma;
-		obj[5] = this.emissora;
-		obj[6] = this.transmissao;
-		obj[7] = this.duracao;
-		obj[8] = this.numTemporadas;
-		obj[9] = this.numEpisodios;
-		
-		return obj;
-	}
-	
-	
-	
-	
-
 }
