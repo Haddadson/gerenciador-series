@@ -9,7 +9,7 @@ public class App {
 		System.out.println(System.getProperty("user.dir"));
 		int operacao = 0;
 		VisaoInicial vs = new VisaoInicial();
-		while(operacao != 6) {
+		while(operacao != 8) {
 			operacao = vs.menuInicial();
 		}
 		

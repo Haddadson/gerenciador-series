@@ -105,6 +105,12 @@ public class Lista {
 		}
 		return elemento;
 	}
+	
+	public void limparLista() throws Exception {
+		while(primeiro != ultimo) {
+			removerFim();
+		}
+	}
 
 	public Serie pesquisarPorPosicao(int pos) throws Exception {
 		Celula aux;
@@ -131,6 +137,22 @@ public class Lista {
 			return aux.getElemento();
 		}
 		return null;
+	}
+	
+	public Lista pesquisarPorEmissora(String emissora) {
+		Celula aux = primeiro;
+		Lista seriesComEmissora = new Lista();
+		while (aux != null) {
+			if (emissora.equalsIgnoreCase(aux.getElemento().getEmissora())) {
+				seriesComEmissora.inserirFim(aux.getElemento());
+			}
+			aux = aux.prox;
+		}
+
+		if (seriesComEmissora.isEmpty()) {
+			return null;
+		}
+		return seriesComEmissora;
 	}
 
 	public Serie pesquisarPorIdSerie(int id) {
@@ -191,6 +213,19 @@ public class Lista {
 		}
 		return stringPreenchido;
 	}
+	
+	public String formatarListaParaArquivo() {
+		Celula i = primeiro;
+		String stringPreenchido = "";
+		while (i != null) {
+			if (i.getElemento() != null) {
+				stringPreenchido += i.getElemento().formatarParaArquivo();
+			}
+			i = i.prox;
+		}
+		return stringPreenchido;
+	}
+	
 	public boolean isEmpty() {
 		if (primeiro == ultimo)
 			return true;
@@ -204,5 +239,4 @@ public class Lista {
 	public int getQtdItens() {
 		return qtdItens;
 	}
-	
 }

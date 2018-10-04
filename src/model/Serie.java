@@ -109,6 +109,10 @@ public class Serie {
 				+ numTemporadas + ", numEpisodios=" + numEpisodios + "]";
 	}
 	
+	public String formatarParaArquivo() {
+		return id+";"+nome+";"+tipo+";"+duracao+";"+pais+";"+idioma+";"+emissora+";"+transmissao+";"+numTemporadas+";"+numEpisodios + System.lineSeparator();
+	}
+	
 	public Object[] toObject() {
 		Object[] obj = new Object[10];
 
