@@ -18,7 +18,7 @@ public class JanelaTexto {
 	}
 
 	public static void imprimirComScroll(String texto, int altura, int largura) {
-		JTextArea textArea = new JTextArea(largura, altura);
+		JTextArea textArea = new JTextArea(altura, largura);
 		textArea.setText(texto);
 		textArea.setEditable(false);
 		JScrollPane scrollPane = new JScrollPane(textArea);

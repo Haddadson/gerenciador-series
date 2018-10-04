@@ -53,16 +53,38 @@ public class VisaoInicial {
 			String serieFavoritada = JOptionPane.showInputDialog(null, "Digite o id da série a ser favoritada:",
 					"Favoritar série por ID", JOptionPane.QUESTION_MESSAGE);
 			serieObtida = op.buscarSeriePorId(Integer.parseInt(serieFavoritada));
-			op.favoritarSerie(serieObtida);
-			JanelaTexto.imprimirComScroll("A série abaixo foi marcada como favorita! \n" 
-										   + serieObtida.toString(), 10, 60);
-			break;
-		case 4:
+			if(op.favoritarSerie(serieObtida)) {
+				JanelaTexto.imprimirComScroll("A série abaixo foi marcada como favorita! \n" 
+						   + serieObtida.toString(), 10, 60);	
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Erro!\nEssa série já está marcada como favorita!", "ERRO", JOptionPane.ERROR_MESSAGE);
+			}
 			
 			break;
+		case 4:
+			String removerSerie = JOptionPane.showInputDialog(null, "Digite o id da série a ser removida dos favoritos:",
+					"Remover série dos favoritos por ID", JOptionPane.QUESTION_MESSAGE);
+			Serie serieRemovida = op.removerFavoritoPorId(Integer.parseInt(removerSerie));
+			if(serieRemovida != null) {
+				JanelaTexto.imprimirComScroll("A série abaixo foi removida dos favoritos! \n" 
+						   + serieRemovida.toString(), 10, 60);	
+			}
+			else {
+				JOptionPane.showMessageDialog(null, "Erro!\nNão foi possível remover essa série!", "ERRO", JOptionPane.ERROR_MESSAGE);
+			}
+			break;
 		case 5:
+			String seriesFavoritas = op.buscarTodasSeriesFavoritas();
+			if(seriesFavoritas.isEmpty()) {
+				seriesFavoritas += "Nenhuma série está marcada como favorita até o momento.";
+			}
+			JanelaTexto.imprimirComScroll(seriesFavoritas);
 			break;
 		case 6:
+			break;
+		default:
+			JOptionPane.showMessageDialog(null, "Erro!\nA opção inserida é inválida!", "ERRO", JOptionPane.ERROR_MESSAGE);
 			break;
 		}
 		return operacao;

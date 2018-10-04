@@ -1,6 +1,9 @@
 package business;
 
 import java.io.*;
+
+import javax.swing.JOptionPane;
+
 import model.Lista;
 import model.Serie;
 
@@ -57,8 +60,12 @@ public class OperacoesLista {
 		return serie;
 	}
 	
-	public void favoritarSerie (Serie serie) {
-		listaFavoritos.inserirFim(serie);
+	public boolean favoritarSerie (Serie serie) {
+		if(listaFavoritos.pesquisarPorIdSerie(serie.getId()) == null) {
+			listaFavoritos.inserirFim(serie);
+			return true;
+		}
+		return false;
 	}
 	
 	public Serie buscarSeriePorId(int id) {
@@ -72,5 +79,17 @@ public class OperacoesLista {
 	public String buscarTodasSeries(){
 		return lista.preencherString();
 	}
-
+	
+	public String buscarTodasSeriesFavoritas(){
+		return listaFavoritos.preencherString();
+	}
+	
+	public Serie removerFavoritoPorId(int id) {
+		try {
+			return listaFavoritos.removerPorIdSerie(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
