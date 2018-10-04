@@ -1,0 +1,5 @@
+32;Orphan Black;Série;51-92 minutos;Canadá;Inglês;Space;30 de março de 2013 - atualmente;5;50
+10;Criminal Minds;Série;45 minutos;Estados Unidos;Inglês;CBS;22 de Setembro de 2005 - Presente;12;277
+39;Scorpion;Série;51-92 minutos;Estados Unidos;inglês;CBS;22 de setembro de 2014 - presente;3;71
+50;The Ranch;Websérie;28 - 32 minutos;Estados Unidos;inglês;Netflix;1 de abril de 2016;2;30
+25;How I Met Your Mother;Sitcom;23 min.;Estados Unidos;Inglês;CBS;19 de setembro de 2005-31 de março de 2014;9;208

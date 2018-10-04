@@ -12,14 +12,15 @@ public class OperacoesLista {
 	private static int contadorSeries = 0;
 	private Lista lista;
 	private Lista listaFavoritos;
-	private static Lista listaSugestoesAleatorias;
+	private Lista listaSugestoesAleatorias;
 
 	public OperacoesLista() {
 		this.lista = new Lista();
 		this.lista = lerArquivoSeries();
 		this.listaFavoritos = new Lista();
 		this.listaFavoritos = lerArquivoFavoritos();
-		OperacoesLista.listaSugestoesAleatorias = new Lista();
+		this.listaSugestoesAleatorias = new Lista();
+		this.listaSugestoesAleatorias = lerArquivoSugestoes();
 		
 	}
 
@@ -77,6 +78,37 @@ public class OperacoesLista {
 			System.out.println("Erro na leitura do arquivo " + CAMINHO_ARQUIVO_FAVORITOS + ".");
 		}
 	}
+	
+	public Lista lerArquivoSugestoes() {
+		try {
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(new FileInputStream(CAMINHO_ARQUIVO_SUGESTOES), "ISO-8859-1"));
+			String linha = in.readLine();
+			while (linha != null) {
+				String atributos[] = linha.split(";");
+				this.listaSugestoesAleatorias.inserirFim(preencherFavorito(atributos));
+				linha = in.readLine();
+			}
+			in.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Arquivo \"" + CAMINHO_ARQUIVO_SUGESTOES + "\"  não existe.");
+		} catch (IOException e) {
+			System.out.println("Erro na leitura do arquivo " + CAMINHO_ARQUIVO_SUGESTOES + ".");
+		}
+		return listaSugestoesAleatorias;
+	}
+
+	public void gravarSugestoesAleatorias() {
+		try {
+			BufferedWriter buffWrite = new BufferedWriter(new FileWriter(CAMINHO_ARQUIVO_SUGESTOES));
+			buffWrite.write(buscarTodasSeriesSugeridasFormatadas());
+		    buffWrite.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("Arquivo \"" + CAMINHO_ARQUIVO_SUGESTOES + "\"  não existe.");
+		} catch (IOException e) {
+			System.out.println("Erro na leitura do arquivo " + CAMINHO_ARQUIVO_SUGESTOES + ".");
+		}
+	}
 
 	public Serie preencherSerie(String atributos[]) {
 		Serie serie = new Serie();
@@ -111,8 +143,6 @@ public class OperacoesLista {
 		}
 		return serie;
 	}
-	
-	
 
 	public boolean favoritarSerie(Serie serie) {
 		if (listaFavoritos.pesquisarPorIdSerie(serie.getId()) == null) {
@@ -186,7 +216,7 @@ public class OperacoesLista {
 			} else {
 				i--;
 			}
-
 		}
+		gravarSugestoesAleatorias();
 	}
 }
