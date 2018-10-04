@@ -28,3 +28,6 @@ Considerando a lista de séries favoritas, crie uma opção para sugestão de um
  1. Nenhuma lista pode conter elementos (séries) repetidos. Assim crie as validações necessárias pra evitar a ocorrência de duplicidades e manter a consistência dos dados.
  2. A utilização de interfaces gráficas é opcional. 
  
+ #### Disponível em:
+ https://github.com/Haddadson/gerenciador-series
+ 
