@@ -147,7 +147,6 @@ public class OperacoesLista {
 	public boolean favoritarSerie(Serie serie) {
 		if (listaFavoritos.pesquisarPorIdSerie(serie.getId()) == null) {
 			listaFavoritos.inserirFim(serie);
-			System.out.println(listaFavoritos.formatarListaParaArquivo());
 			gravarFavoritos();
 			return true;
 		}
@@ -200,8 +199,25 @@ public class OperacoesLista {
 	public Lista obterSugestoesAleatorias() {
 		if (listaSugestoesAleatorias.isEmpty()) {
 			gerarSugestoesAleatorias();
+		} else {
+			if(validarSeExisteElementoRepetido()) {
+				gerarSugestoesAleatorias();
+			}
 		}
 		return listaSugestoesAleatorias;
+	}
+	
+	public boolean validarSeExisteElementoRepetido() {
+		Serie aux;
+		for(int i = 0; i < lista.getQtdItens(); i++) {
+			aux = listaFavoritos.pesquisarPorIdSerie(i);
+			if(aux != null) {
+				if(listaSugestoesAleatorias.pesquisarPorIdSerie(aux.getId()) != null) {
+					return true;
+				}
+			}
+		}
+		return false;		
 	}
 
 	public void gerarSugestoesAleatorias() {
