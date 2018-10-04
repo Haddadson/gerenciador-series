@@ -1,16 +1,21 @@
 package application;
 
-import business.OperacoesLista;
-import model.Lista;
+
+import view.VisaoInicial;
 
 public class App {
 
 	public static void main(String[] args) {
 		System.out.println(System.getProperty("user.dir"));
-		Lista lista = new Lista();
-		lista = OperacoesLista.lerArquivo(lista);
-		lista.mostrar();
+		int operacao = 0;
+		VisaoInicial vs = new VisaoInicial();
+		while(operacao != 8) {
+			operacao = vs.menuInicial();
+		}
+		
+		
 		
 	}
+	
 
 }

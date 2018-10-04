@@ -96,8 +96,7 @@ public class Lista {
 			elemento = removerFim();
 		} else {
 			Celula i = primeiro.prox;
-			for (int j = 0; j <= pos; j++, i = i.prox)
-				;
+			for (int j = 0; j <= pos; j++, i = i.prox);
 			i.ant.prox = i.prox;
 			i.prox.ant = i.ant;
 			elemento = i.getElemento();
@@ -105,6 +104,12 @@ public class Lista {
 			i = null;
 		}
 		return elemento;
+	}
+	
+	public void limparLista() throws Exception {
+		while(primeiro != ultimo) {
+			removerFim();
+		}
 	}
 
 	public Serie pesquisarPorPosicao(int pos) throws Exception {
@@ -133,9 +138,25 @@ public class Lista {
 		}
 		return null;
 	}
+	
+	public Lista pesquisarPorEmissora(String emissora) {
+		Celula aux = primeiro;
+		Lista seriesComEmissora = new Lista();
+		while (aux != null) {
+			if (emissora.equalsIgnoreCase(aux.getElemento().getEmissora())) {
+				seriesComEmissora.inserirFim(aux.getElemento());
+			}
+			aux = aux.prox;
+		}
+
+		if (seriesComEmissora.isEmpty()) {
+			return null;
+		}
+		return seriesComEmissora;
+	}
 
 	public Serie pesquisarPorIdSerie(int id) {
-		Celula aux = primeiro;
+		Celula aux = primeiro.prox;
 
 		while (aux != null && (id != aux.getElemento().getId())) {
 			aux = aux.prox;
@@ -143,6 +164,30 @@ public class Lista {
 
 		if (aux != null) {
 			return aux.getElemento();
+		}
+		return null;
+	}
+	
+	public Serie removerPorIdSerie(int id) throws Exception {
+		Celula aux = primeiro.prox;
+		Serie elemento;
+		while (aux != null && (id != aux.getElemento().getId())) {
+			aux = aux.prox;
+		}
+
+		if (aux != null) {
+			if(aux.prox == null && aux.ant != null) {
+				 elemento = removerFim();
+			} else if(aux.ant == null && aux.prox != null) {
+				elemento = removerInicio();
+			} else {
+				aux.ant.prox = aux.prox;
+				aux.prox.ant = aux.ant;
+				elemento = aux.getElemento();
+				aux.prox = aux.ant = null;
+				aux = null;	
+			} 
+			return elemento;
 		}
 		return null;
 	}
@@ -157,6 +202,30 @@ public class Lista {
 		}
 	}
 
+	public String preencherString() {
+		Celula i = primeiro;
+		String stringPreenchido = "";
+		while (i != null) {
+			if (i.getElemento() != null) {
+				stringPreenchido += i.getElemento().toString() + "\n";
+			}
+			i = i.prox;
+		}
+		return stringPreenchido;
+	}
+	
+	public String formatarListaParaArquivo() {
+		Celula i = primeiro;
+		String stringPreenchido = "";
+		while (i != null) {
+			if (i.getElemento() != null) {
+				stringPreenchido += i.getElemento().formatarParaArquivo();
+			}
+			i = i.prox;
+		}
+		return stringPreenchido;
+	}
+	
 	public boolean isEmpty() {
 		if (primeiro == ultimo)
 			return true;
